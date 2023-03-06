@@ -4,15 +4,16 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Types\UlidType;
+use Symfony\Component\Uid\Ulid;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 class User
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: UlidType::NAME, unique: true)]
+    private ?Ulid $id = null;
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
@@ -20,7 +21,12 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
-    public function getId(): ?int
+    public function __construct(Ulid $id = null)
+    {
+        $this->id = $id;
+    }
+
+    public function getId(): ?Ulid
     {
         return $this->id;
     }

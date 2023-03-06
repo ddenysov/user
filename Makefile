@@ -17,3 +17,17 @@ restart: stop start
 
 ssh:
 	@$(APP) bash
+
+test:
+	@$(APP) bin/phpunit
+
+test-db-drop:
+	@$(APP) bin/console doctrine:database:drop --force --if-exists --env=test
+
+test-db-create-db:
+	@$(APP) bin/console doctrine:database:create --env=test
+
+test-db-create-schema:
+	@$(APP) bin/console doctrine:schema:create --env=test
+
+test-db: test-db-drop test-db-create-db test-db-create-schema
