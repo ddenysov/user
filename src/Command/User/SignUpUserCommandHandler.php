@@ -2,11 +2,11 @@
 
 namespace App\Command\User;
 
+use App\MessageHandler\CommandHandlerInterface;
 use App\Service\SignUpUserService;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-#[AsMessageHandler]
-final class SignUpUserCommandHandler
+final class SignUpUserCommandHandler implements CommandHandlerInterface
 {
     /**
      * @param SignUpUserService $signUpUserService
