@@ -12,4 +12,12 @@ abstract class EntityEvent
     public function __construct(private readonly Ulid $id)
     {
     }
+
+    /**
+     * @return Ulid
+     */
+    public function getId(): Ulid
+    {
+        return $this->id;
+    }
 }

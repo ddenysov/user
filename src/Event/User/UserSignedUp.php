@@ -2,7 +2,7 @@
 
 namespace App\Event\User;
 
-class UserSignedUp
+class UserSignedUp extends UserEvent
 {
 
 }

@@ -4,6 +4,7 @@ namespace App\Tests\Controller\User;
 
 use App\Command\User\SignUpUserCommand;
 use App\Entity\User;
+use App\Event\User\UserSignedUp;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +31,7 @@ class SignUpControllerTest extends WebTestCase
         $repo = static::getContainer()->get(UserRepository::class);
 
         $this->transport()->queue()->assertContains(SignUpUserCommand::class);
-        $this->transport()->process(1);
+        $this->transport()->process();
         $this->transport()->queue()->assertEmpty();
         $this->assertInstanceOf(User::class, $repo->find($id));
     }

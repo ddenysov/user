@@ -3,17 +3,21 @@
 namespace App\Service;
 
 use App\Entity\User;
+use App\Event\User\UserSignedUp;
 use App\Repository\UserRepository;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Uid\Ulid;
 
 class SignUpUserService
 {
     /**
      * @param UserRepository $userRepository
+     * @param MessageBusInterface $eventBus
      */
-    public function __construct(private readonly UserRepository $userRepository)
-    {
-
+    public function __construct(
+        private readonly UserRepository $userRepository,
+        private readonly MessageBusInterface $eventBus,
+    ) {
     }
 
     public function handle(
@@ -27,5 +31,6 @@ class SignUpUserService
         $user->setPassword($password);
 
         $this->userRepository->save($user, true);
+        $this->eventBus->dispatch(new UserSignedUp($user->getId()));
     }
 }

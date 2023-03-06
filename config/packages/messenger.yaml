@@ -33,6 +33,7 @@ framework:
     routing:
       # Route your messages to the transports
       'App\Command\User\SignUpUserCommand': async
+      'App\Event\User\UserSignedUp': async
 
 when@test:
   framework:

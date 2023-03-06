@@ -3,9 +3,6 @@
 namespace App\Controller;
 
 use App\Command\User\SignUpUserCommand;
-use App\Entity\User;
-use App\Repository\UserRepository;
-use App\Service\SignUpUserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,9 +17,9 @@ class SignUpController extends AbstractController
     public function index(MessageBusInterface $bus, Request $request): JsonResponse
     {
         $bus->dispatch(new SignUpUserCommand(
-                id: $request->get('id'),
-                email: $request->get('email'),
-                password: $request->get('password')
+                id: $request->get('id', Ulid::generate()),
+                email: $request->get('email', 'aaaa1@gmail.com'),
+                password: $request->get('password', '123')
             )
         );
 
