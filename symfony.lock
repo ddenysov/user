@@ -143,5 +143,8 @@
         "files": [
             "config/packages/uid.yaml"
         ]
+    },
+    "zenstruck/messenger-test": {
+        "version": "v1.7.2"
     }
 }
