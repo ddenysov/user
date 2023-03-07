@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UlidType;
+use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Uid\Ulid;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -19,6 +20,7 @@ class User
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
+    #[Ignore]
     private ?string $password = null;
 
     public function __construct(Ulid $id = null)

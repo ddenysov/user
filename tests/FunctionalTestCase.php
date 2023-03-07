@@ -3,15 +3,16 @@
 namespace App\Tests;
 
 use Doctrine\DBAL\Connection;
+use Liip\TestFixturesBundle\Services\DatabaseToolCollection;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\TestContainer;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class FunctionalTestCase extends WebTestCase
+abstract class FunctionalTestCase extends WebTestCase
 {
     protected KernelBrowser $client;
     protected Connection $connection;
     protected $container;
+    protected $databaseTool;
 
     /**
      * @return void
@@ -22,10 +23,11 @@ class FunctionalTestCase extends WebTestCase
         parent::setUp();
         $this->client = static::createClient();
         $this->client->disableReboot();
-        $this->container = $this->client->getContainer();
+        $this->container  = $this->client->getContainer();
         $this->connection = $this->container->get('doctrine')->getConnection();
         $this->connection->beginTransaction();
         $this->connection->setAutoCommit(false);
+        $this->databaseTool = $this->container->get(DatabaseToolCollection::class)->get();
     }
 
     /**
