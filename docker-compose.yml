@@ -3,11 +3,19 @@ services:
   user:
     build:
       context: .
-      dockerfile: ./etc/Dockerfile
+      dockerfile: ./etc/php/Dockerfile
     volumes:
       - ./:/var/www
     ports:
       - "8000:8000"
+    links:
+      - database
+  user_supervisor:
+    build:
+      context: .
+      dockerfile: ./etc/supervisor/Dockerfile
+    volumes:
+      - ./:/var/www
     links:
       - database
 ###> doctrine/doctrine-bundle ###
