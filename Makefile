@@ -30,4 +30,4 @@ test-db-create-db:
 test-db-create-schema:
 	@$(APP) bin/console doctrine:schema:create --env=test
 
-test-db: test-db-drop test-db-create-db test-db-create-schema
+test-env: test-db-drop test-db-create-db test-db-create-schema

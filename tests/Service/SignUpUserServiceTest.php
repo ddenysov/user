@@ -4,18 +4,17 @@ namespace App\Tests\Service;
 
 use App\Event\User\UserSignedUp;
 use App\Service\SignUpUserService;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use App\Tests\FunctionalTestCase;
 use Symfony\Component\Uid\Ulid;
 use Zenstruck\Messenger\Test\InteractsWithMessenger;
 
-class SignUpUserServiceTest extends KernelTestCase
+class SignUpUserServiceTest extends FunctionalTestCase
 {
     use InteractsWithMessenger;
 
     public function testSignUpEvent()
     {
-        $kernel = static::bootKernel();
-        $service = $kernel->getContainer()->get(SignUpUserService::class);
+        $service = $this->container->get(SignUpUserService::class);
         $this->assertTrue(true);
         $service->handle(
             id: Ulid::generate(),

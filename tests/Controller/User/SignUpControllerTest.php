@@ -4,14 +4,13 @@ namespace App\Tests\Controller\User;
 
 use App\Command\User\SignUpUserCommand;
 use App\Entity\User;
-use App\Event\User\UserSignedUp;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\FunctionalTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Ulid;
 use Zenstruck\Messenger\Test\InteractsWithMessenger;
 
-class SignUpControllerTest extends WebTestCase
+class SignUpControllerTest extends FunctionalTestCase
 {
     use InteractsWithMessenger;
 
@@ -19,15 +18,14 @@ class SignUpControllerTest extends WebTestCase
     {
         $id     = Ulid::generate();
         $email  = 'test_' . md5(rand(1, 9999)) . '@gmail.com';
-        $client = static::createClient();
-        $client->request('POST', '/sign-up', [
+        $this->client->request('POST', '/sign-up', [
             'id'       => $id,
             'email'    => $email,
             'password' => '55555',
         ]);
 
-        $json = json_decode($client->getResponse()->getContent(), true);
-        $this->assertEquals(Response::HTTP_CREATED, $client->getResponse()->getStatusCode());
+        $json = json_decode($this->client->getResponse()->getContent(), true);
+        $this->assertEquals(Response::HTTP_CREATED, $this->client->getResponse()->getStatusCode());
         $repo = static::getContainer()->get(UserRepository::class);
 
         $this->transport()->queue()->assertContains(SignUpUserCommand::class);
