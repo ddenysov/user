@@ -2,7 +2,9 @@
 
 namespace App\Command\User;
 
-class SignUpUserCommand
+use App\MessageHandler\Command;
+
+class SignUpUserCommand implements Command
 {
     /**
      * @var string

@@ -2,9 +2,10 @@
 
 namespace App\Event;
 
+use App\MessageHandler\Event;
 use Symfony\Component\Uid\Ulid;
 
-abstract class EntityEvent
+abstract class EntityEvent implements Event
 {
     /**
      * @param Ulid $id

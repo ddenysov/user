@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Command\User\SignUpUserCommand;
+use App\MessageHandler\CommandBusInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,7 @@ use Symfony\Component\Uid\Ulid;
 class SignUpController extends AbstractController
 {
     #[Route('/sign-up', name: 'app_sign_up')]
-    public function index(MessageBusInterface $bus, Request $request): JsonResponse
+    public function index(CommandBusInterface $bus, Request $request): JsonResponse
     {
         $bus->dispatch(new SignUpUserCommand(
                 id: $request->get('id', Ulid::generate()),
