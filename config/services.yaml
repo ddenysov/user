@@ -14,17 +14,17 @@ services:
     _instanceof:
         # all services implementing the CommandHandlerInterface
         # will be registered on the command.bus bus
-        App\MessageHandler\CommandHandlerInterface:
+        Ddenysov\SymfonyBus\Command\CommandHandlerInterface:
             tags:
                 - { name: messenger.message_handler, bus: command.bus }
 
         # while those implementing QueryHandlerInterface will be
         # registered on the query.bus bus
-        App\MessageHandler\QueryHandlerInterface:
+        Ddenysov\SymfonyBus\Query\QueryHandlerInterface:
             tags:
                 - { name: messenger.message_handler, bus: query.bus }
 
-        App\MessageHandler\EventHandlerInterface:
+        Ddenysov\SymfonyBus\Event\EventHandlerInterface:
             tags:
                 - { name: messenger.message_handler, bus: event.bus }
     # makes classes in src/ available to be used as services
@@ -40,3 +40,16 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Service\SignUpUserService:
         public: true
+
+    Ddenysov\SymfonyBus\Query\QueryBus:
+    Ddenysov\SymfonyBus\Query\QueryBusInterface:
+        alias: Ddenysov\SymfonyBus\Query\QueryBus
+
+    Ddenysov\SymfonyBus\Command\CommandBus:
+    Ddenysov\SymfonyBus\Command\CommandBusInterface:
+            alias: Ddenysov\SymfonyBus\Command\CommandBus
+
+    Ddenysov\SymfonyBus\Event\EventBus:
+    Ddenysov\SymfonyBus\Event\EventBusInterface:
+        alias: Ddenysov\SymfonyBus\Event\EventBus
+

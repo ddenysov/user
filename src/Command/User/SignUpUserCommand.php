@@ -2,7 +2,7 @@
 
 namespace App\Command\User;
 
-use App\MessageHandler\Command;
+use Ddenysov\SymfonyBus\Command\Command;
 
 class SignUpUserCommand implements Command
 {

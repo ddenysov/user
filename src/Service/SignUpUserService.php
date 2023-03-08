@@ -4,9 +4,8 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Event\User\UserSignedUp;
-use App\MessageHandler\EventBusInterface;
 use App\Repository\UserRepository;
-use Symfony\Component\Messenger\MessageBusInterface;
+use Ddenysov\SymfonyBus\Event\EventBusInterface;
 use Symfony\Component\Uid\Ulid;
 
 class SignUpUserService

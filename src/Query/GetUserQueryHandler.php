@@ -3,8 +3,8 @@
 namespace App\Query;
 
 use App\Entity\User;
-use App\MessageHandler\QueryHandlerInterface;
 use App\Service\GetUserService;
+use Ddenysov\SymfonyBus\Query\QueryHandlerInterface;
 use Symfony\Component\Uid\Ulid;
 
 class GetUserQueryHandler implements QueryHandlerInterface

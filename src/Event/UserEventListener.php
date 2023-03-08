@@ -3,7 +3,7 @@
 namespace App\Event;
 
 use App\Event\User\UserSignedUp;
-use App\MessageHandler\EventHandlerInterface;
+use Ddenysov\SymfonyBus\Event\EventHandlerInterface;
 
 class UserEventListener implements EventHandlerInterface
 {

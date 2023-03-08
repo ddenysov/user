@@ -4,8 +4,52 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cbc24c1fe1f719da83a434b08243f095",
+    "content-hash": "cc8189fc41649411fd95f35090c8ed41",
     "packages": [
+        {
+            "name": "ddenysov/symfony-bus",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ddenysov/symfony-bus.git",
+                "reference": "0cd15afc5a5791925c1cb14ec0e0fd08e11e59db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ddenysov/symfony-bus/zipball/0cd15afc5a5791925c1cb14ec0e0fd08e11e59db",
+                "reference": "0cd15afc5a5791925c1cb14ec0e0fd08e11e59db",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/messenger": "^6.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^10.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ddenysov\\SymfonyBus\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "App\\Tests\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Dmytro Denysov",
+                    "email": "denisov1985@gmail.com"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/ddenysov/symfony-bus/tree/main",
+                "issues": "https://github.com/ddenysov/symfony-bus/issues"
+            },
+            "time": "2023-03-08T20:27:54+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "2.0.1",
@@ -7467,7 +7511,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "ddenysov/symfony-bus": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

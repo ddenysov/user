@@ -2,7 +2,7 @@
 
 namespace App\Event;
 
-use App\MessageHandler\Event;
+use Ddenysov\SymfonyBus\Event\Event;
 use Symfony\Component\Uid\Ulid;
 
 abstract class EntityEvent implements Event

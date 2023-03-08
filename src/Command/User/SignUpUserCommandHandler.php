@@ -2,9 +2,8 @@
 
 namespace App\Command\User;
 
-use App\MessageHandler\CommandHandlerInterface;
 use App\Service\SignUpUserService;
-use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+use Ddenysov\SymfonyBus\Command\CommandHandlerInterface;
 
 final class SignUpUserCommandHandler implements CommandHandlerInterface
 {
