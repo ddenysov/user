@@ -27,13 +27,16 @@ framework:
     transports:
       # https://symfony.com/doc/current/messenger.html#transport-configuration
       async: '%env(MESSENGER_TRANSPORT_DSN)%'
+      user_events:
+        dsn: '%env(USER_TRANSPORT_DSN)%'
+        serializer: App\Serializer\EventSerializer
       # failed: 'doctrine://default?queue_name=failed'
       #sync: 'sync://'
 
     routing:
       # Route your messages to the transports
       'App\Command\User\SignUpUserCommand': async
-      'App\Event\User\UserSignedUp': async
+      'App\Event\User\UserSignedUp': user_events
 
 when@test:
   framework:
