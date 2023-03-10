@@ -1,9 +1,7 @@
 version: '3'
 services:
   user:
-    build:
-      context: .
-      dockerfile: ./etc/php/Dockerfile
+    image: ghcr.io/ddenysov/app:latest
     volumes:
       - ./:/var/www
     ports:
@@ -11,9 +9,7 @@ services:
     links:
       - database
   user_supervisor:
-    build:
-      context: .
-      dockerfile: ./etc/supervisor/Dockerfile
+    image: ghcr.io/ddenysov/supervisor:latest
     volumes:
       - ./:/var/www
     links:
