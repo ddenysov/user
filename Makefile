@@ -13,6 +13,9 @@ restart: stop start
 ssh:
 	@$(APP) bash
 
+ssh-sv:
+	@$(SV) bash
+
 test:
 	@$(APP) bin/phpunit
 

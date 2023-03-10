@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Event\User\UserSignedUp;
 use App\Repository\UserRepository;
 use Ddenysov\SymfonyBus\Event\EventBusInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Uid\Ulid;
 
 class SignUpUserService
@@ -17,6 +18,7 @@ class SignUpUserService
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly EventBusInterface $eventBus,
+        private readonly LoggerInterface $logger,
     ) {
     }
 
@@ -31,6 +33,7 @@ class SignUpUserService
         $user->setPassword($password);
 
         $this->userRepository->save($user, true);
+        $this->logger->debug('Sending user event');
         $this->eventBus->dispatch(new UserSignedUp($user->getId()));
     }
 }

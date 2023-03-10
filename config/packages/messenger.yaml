@@ -26,8 +26,8 @@ framework:
 
     transports:
       # https://symfony.com/doc/current/messenger.html#transport-configuration
-      async: '%env(MESSENGER_TRANSPORT_DSN)%'
-      user_events:
+      commands: '%env(MESSENGER_TRANSPORT_DSN)%'
+      events:
         dsn: '%env(USER_TRANSPORT_DSN)%'
         serializer: App\Serializer\EventSerializer
       # failed: 'doctrine://default?queue_name=failed'
@@ -35,8 +35,8 @@ framework:
 
     routing:
       # Route your messages to the transports
-      'App\Command\User\SignUpUserCommand': async
-      'App\Event\User\UserSignedUp': user_events
+      'App\Command\User\SignUpUserCommand': commands
+      'App\Event\User\UserSignedUp': events
 
 when@test:
   framework:
@@ -44,4 +44,4 @@ when@test:
       transports:
         # replace with your transport name here (e.g., my_transport: 'in-memory://')
         # For more Messenger testing tools, see https://github.com/zenstruck/messenger-test
-        async: 'test://'
+        commands: 'test://'
