@@ -5,9 +5,13 @@ services:
     volumes:
       - ./:/var/www
     ports:
-      - "8000:8000"
+      - "10001:8181"
     links:
       - database
+    networks:
+      internal-services:
+        aliases:
+          - user_service
   user_supervisor:
     image: ghcr.io/ddenysov/supervisor:latest
     volumes:
@@ -38,3 +42,8 @@ volumes:
 ###> doctrine/doctrine-bundle ###
   database_data:
 ###< doctrine/doctrine-bundle ###
+
+networks:
+  internal-services:
+    name: internal-services
+    external: true
