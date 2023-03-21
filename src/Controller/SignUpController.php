@@ -17,7 +17,6 @@ class SignUpController extends AbstractController
     #[Route('/sign-up', name: 'app_sign_up')]
     public function index(CommandBusInterface $bus, Request $request): JsonResponse
     {
-        dd($_SERVER);
         $bus->dispatch(new SignUpUserCommand(
                 id: $request->get('id', Ulid::generate()),
                 email: $request->get('email', 'aaaa1@gmail.com'),

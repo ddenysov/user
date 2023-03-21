@@ -1,0 +1,4 @@
+version: '3'
+services:
+  deploy:
+    image: ghcr.io/ddenysov/mailer:latest
