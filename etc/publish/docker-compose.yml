@@ -1,4 +1,14 @@
 version: '3'
 services:
-  deploy:
-    image: ghcr.io/ddenysov/mailer:latest
+  deploy-app:
+    image: ghcr.io/ddenysov/base:latest
+    environment:
+      APP_REPO: https://github.com/ddenysov/user.git
+      APP_MODE: app
+      APP_PORT: 9901
+
+  deploy-supervisor:
+    image: ghcr.io/ddenysov/base:latest
+    environment:
+      APP_REPO: https://github.com/ddenysov/user.git
+      APP_MODE: supervisor
